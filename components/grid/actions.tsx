@@ -69,7 +69,7 @@ const Actions = (): ReactElement => {
             <div className="flex flex-col items-end h-20">
                 <div className="h-4 mb-2"></div>
                 <button 
-                    className=" w-[15rem] px-4 py-2 bg-gray-400 text-white rounded-md"
+                    className={`w-[15rem] px-4 py-2 ${state?.randomStarted ? 'bg-gray-400' : 'bg-blue-500'} text-white rounded-md`}
                     onClick={() => handleRandomButtonClick()}
                     disabled={btnDisabled}
                 >

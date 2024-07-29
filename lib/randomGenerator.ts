@@ -1,20 +1,21 @@
 import { getRandomLetters } from "@/actions/randomLetters";
+import { GridState, Grid } from '@/types/grid'
 
-export const runGenerate = async (char : string | undefined ) => {
+export const runGenerate = async (char : string | undefined ): Promise<{ charGrid: Grid, code: number }> => {
     const charGrid = await getRandomLetters(char?.toUpperCase())
     console.log("response from serve to getRandomLetters function call:", charGrid)
     // updateState({ ...state, charGrid });
 
 
     const response = await fetch('/api/currentSeconds');
-    const { seconds } = await response.json();
+    const { seconds } = await response.json()as { seconds: number[]};
     console.log("response from API to currentSeconds endpoint:", seconds)
 
-    const char1 = charGrid[seconds[0]][seconds[1]];
-    const char2 = charGrid[seconds[1]][seconds[0]];
+    const char1: string = charGrid[seconds[0]][seconds[1]];
+    const char2: string = charGrid[seconds[1]][seconds[0]];
 
-    let count1 = 0;
-    let count2 = 0;
+    let count1: number = 0;
+    let count2: number = 0;
 
     // Count occurrences in the grid
     charGrid.forEach(row => {
@@ -36,11 +37,11 @@ export const runGenerate = async (char : string | undefined ) => {
         return count;
     };
 
-    const finalCount1 = adjustCount(count1);
-    const finalCount2 = adjustCount(count2);
+    const finalCount1: number = adjustCount(count1);
+    const finalCount2: number = adjustCount(count2);
 
     const code = parseInt(`${Math.floor(finalCount1)}${Math.floor(finalCount2)}`)
 
     console.log("code", code)
-    return { charGrid, code};
+    return { charGrid, code };
 }

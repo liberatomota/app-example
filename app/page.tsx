@@ -1,12 +1,11 @@
 "use client"
 
-import { ReactElement, useRef } from "react"
+import { ReactElement } from "react"
 import Actions from "@/components/grid/actions"
 import Matrix from "@/components/grid/matrix"
 import Code from "@/components/grid/code"
 
-const Grid = (): ReactElement  => {
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+const Grid = (): ReactElement => {
 
   return (
     <div className="p-8">

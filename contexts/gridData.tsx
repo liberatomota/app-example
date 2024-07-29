@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, ReactNode, FunctionComponent, ReactElement, useEffect, useRef, useCallback } from 'react';
-import { GridState } from './types';
+import { GridState } from '@/types/grid';
 import { GRID } from '@/utils/constants';
 import { runGenerate } from "@/lib/randomGenerator";
 
@@ -34,7 +34,6 @@ export const GridDataProvider: FunctionComponent<{ children: ReactNode }> = ({ c
 },[state, updateState])
 
   useEffect(() => {
-    console.log("state.randomStarted", state.randomStarted)
   if (state.randomStarted) {
       intervalRef.current = setInterval(() => {
           runRandom();
@@ -46,7 +45,7 @@ export const GridDataProvider: FunctionComponent<{ children: ReactNode }> = ({ c
           clearInterval(intervalRef.current);
       }
   }
-  }, [state.randomStarted]);
+  }, [state.randomStarted, runRandom]);
 
   // Return the context provider with children inside it
   return (
