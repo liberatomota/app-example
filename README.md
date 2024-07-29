@@ -4,6 +4,7 @@
     - [Main conponents](#main-conponents)
     - [Getting Started](#getting-started)
         - [Pre-requises](#pre-requises)
+        - [Environment variables](#environment-variables)
         - [Run docker services](#run-docker-services)
         - [Run the development server](#run-the-development-server)
     - [Features](#features)
@@ -30,6 +31,14 @@ Our solution has two major components:
 ### Pre-requises
 
 To run de dev server, you must have docker and node.js (>=18) installed on your machine.
+
+### Environment variables
+
+Create a copy of `.env.example` to `.env.local`.
+
+```bash:
+cp .env.local.example .env.local
+```
 
 ### Run docker services
 
